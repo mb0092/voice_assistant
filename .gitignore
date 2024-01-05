@@ -6,6 +6,9 @@ __pycache__/
 # C extensions
 *.so
 
+# temporary sounds
+audio-*.mp3
+
 # Distribution / packaging
 .Python
 build/
