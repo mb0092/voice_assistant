@@ -1,7 +1,7 @@
 """ Speech Recognition Example with GPT integration
 https://www.mindluster.com/lesson/568
 https://blog.enterprisedna.co/how-to-use-chatgpt-for-python/ 
-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 """
+environment variable OPENAI_TOKEN"""
 
 from time import ctime, sleep
 import os
@@ -42,6 +42,7 @@ def respond(res_voice_data):
     elif 'question' in res_voice_data:
         alexis_speak("What question?")
         res_voice_data = record_audio()
+        print(res_voice_data)
         res_voice_data = chat_with_chatgpt(res_voice_data, model="gpt-3.5-turbo")
         if res_voice_data:
             alexis_speak(res_voice_data)
@@ -91,8 +92,8 @@ def alexis_speak(audio_string):
             print("Audio file not found (" + audio_file + ")")
 
 if __name__ == "__main__":
-    openai.api_key = "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"
-
+    openai.api_key = os.getenv('OPENAI_TOKEN')
+    print(os.getenv('OPENAI_TOKEN'))
     alexis_speak('Hallo')
     while True:
         alexis_speak('I\'m listening...')
